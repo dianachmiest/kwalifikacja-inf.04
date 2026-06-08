@@ -1,0 +1,44 @@
+﻿<Window x:Class="Zadanie6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie6"
+        mc:Ignorable="d"
+        Title="Podgląd Magazynu" Height="450" Width="700" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="lsvProdukty" Grid.Column="0" Margin="10" SelectionChanged="LsvProdukty_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazwa" DisplayMemberBinding="{Binding Nazwa}" Width="150"/>
+                    <GridViewColumn Header="Cena" DisplayMemberBinding="{Binding Cena}" Width="60"/>
+                    <GridViewColumn Header="Ilość" DisplayMemberBinding="{Binding Ilosc}" Width="60"/>
+                    <GridViewColumn Header="Status kodu" DisplayMemberBinding="{Binding StatusKodu}" Width="90"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel x:Name="pnlSzczegoly" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="SZCZEGÓŁY PRODUKTU" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock x:Name="txtPelnaNazwa" FontSize="12" Margin="0,0,0,5"/>
+            <TextBlock x:Name="txtStatusKodu" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
+            <Label Content="Etykieta magazynowa:"/>
+            <TextBlock x:Name="txtEtykieta" FontFamily="Monospace" FontSize="14" Padding="5"/>
+        </StackPanel>
+
+        <StatusBar Grid.Row="1" Grid.ColumnSpan="2">
+            <StatusBarItem>
+                <TextBlock x:Name="txtPasekStatusu" Text="Oczekiwanie na ładowanie..."/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
